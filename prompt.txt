@@ -1,0 +1,7 @@
+write a javascript game called "flipstreak"
+
+the game has two settings. the first setting is "streak" - this is how many heads in a row you need to win. for example, if streak=2, then you need 2 heads in a row to win. the second setting is "lives" - this is how many tails you can flip before you lose. if you have lives=1, the first time you flip tails, you lose. if you have lives=3, then you can flip tails two times without losing, but the third time you lose.
+
+the user should be able to set "streak" and "lives" on the initial page of the game, or pass them as URL parameters. then, the user should be able to press a button to flip a coin. each time, they flip heads or tails randomly. the goal is to get heads in a row equal to "streak" before losing all of their lives.
+
+can you please generate the code for this web page?

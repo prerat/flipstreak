@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipstreak</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flipstreak</h1>
+    <p>Set your desired streak and lives:</p>
+    <label for="streak">Streak:</label>
+    <input type="number" id="streak" value="2" min="1">
+    <label for="lives">Lives:</label>
+    <input type="number" id="lives" value="1" min="1">
+    <button onclick="startGame()">Start Game</button>
+
+    <div id="game" style="display:none;">
+        <p><button onclick="flipCoin()">Flip Coin</button></p>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        let streak, lives, currentStreak, remainingLives;
+
+        function startGame() {
+            streak = parseInt(document.getElementById("streak").value);
+            lives = parseInt(document.getElementById("lives").value);
+            currentStreak = 0;
+            remainingLives = lives;
+            document.getElementById("game").style.display = "block";
+        }
+
+        function flipCoin() {
+            const result = Math.random() < 0.5 ? "Heads" : "Tails";
+            const resultElement = document.getElementById("result");
+
+            if (result === "Heads") {
+                currentStreak++;
+                if (currentStreak === streak) {
+                    resultElement.innerHTML = `You won! You flipped ${result} and achieved a streak of ${streak}.`;
+                    resetGame();
+                    return;
+                }
+                resultElement.innerHTML = `You flipped ${result}. Current streak: ${currentStreak}.`;
+            } else {
+                remainingLives--;
+                if (remainingLives === 0) {
+                    resultElement.innerHTML = `Game over. You flipped ${result} and lost all your lives.`;
+                    resetGame();
+                    return;
+                }
+                currentStreak = 0;
+                resultElement.innerHTML = `You flipped ${result}. Remaining lives: ${remainingLives}.`;
+            }
+        }
+
+        function resetGame() {
+            currentStreak = 0;
+            remainingLives = lives;
+            setTimeout(() => {
+                document.getElementById("game").style.display = "none";
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
